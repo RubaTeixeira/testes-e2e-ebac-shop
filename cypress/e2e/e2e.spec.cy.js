@@ -20,24 +20,21 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     afterEach(() => {
         cy.screenshot()
     });
-      
+
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
 
         let emailFaker = faker.internet.email(dadosCadastro[0].nome, dadosCadastro[0].sobrenome)
 
         //Rotina 1 - Escolher, personalizar e adicionar produtos ao carrinho
-        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'M', 'Green', 1 )
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.addProdutos('Apollo Running Short', '36', 'Black', 1 )
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.addProdutos('Argus All-Weather Tank', 'L', 'Gray', 1 )
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.addProdutos('Arcadio Gym Short', '36', 'Blue', 1 )
-        
+        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'M', 'Green', 1)
+        cy.addProdutos('Apollo Running Short', '36', 'Black', 1)
+        cy.addProdutos('Argus All-Weather Tank', 'L', 'Gray', 1)
+        cy.addProdutos('Arcadio Gym Short', '36', 'Blue', 1)
+
         //Rotina 2 - Acessar carrinho para visualizar produtos, ir para o checkout    
         cy.get('.dropdown-toggle > .text-skin > .icon-basket').click()
         cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .view-cart').click()
-        cy.screenshot()        
+        cy.screenshot()
         cy.get('.checkout-button').click()
 
         //Rotina 3 - Preencher dados de cadastro, criar login e finalizar a compra
@@ -58,7 +55,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#account_password').type('!teste@teste$')
         cy.get('#terms').click()
         cy.get('#place_order').click().wait(10000)
-                
+
     });
 
 })
